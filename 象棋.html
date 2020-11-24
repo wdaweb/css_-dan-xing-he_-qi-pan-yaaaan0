@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            font-family: 標楷體;
+            box-sizing: border-box;
+          }
+
+          *::before *::after{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+          }
+          body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .container{
+              width: 500px;
+              height: 550px;
+              border: 1px solid #000000;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+          }
+          .container::before{
+              content: "棋盤裡，車無輪馬無韁，叫聲將軍提防提防";
+              font-size: 28px;
+              writing-mode: vertical-rl;
+              position: absolute;
+              left: -60px;  
+          }
+          .container::after{
+              content: "圖畫里，龍不吟虎不嘯，小小書童可笑可笑";
+              font-size: 28px;
+              writing-mode: vertical-rl;
+              position: absolute;
+              right: -60px;  
+          }
+          table{
+              width: 400px;
+              height: 450px;
+              border: 1px solid #000000;
+              border-collapse: collapse;
+              text-align: center;
+              position: relative;
+          }
+          td{
+            width: 50px;
+              height: 50px;
+              border: 1px solid #000000;
+          }
+
+          .line,
+          .line2{
+              height: 50px;
+              width: 50px;
+              /* background-color: aqua; */
+              position: relative;
+          }
+
+          .line::before,
+          .line2::before{
+            content:"";
+            position:absolute;
+            left:24px;
+            top:0;
+            width:100%;
+            height:50px;
+            box-sizing:border-box;
+            border-bottom:1px solid #000000;
+            transform-origin:bottom center;
+            transform:rotateZ(45deg) scaleX(2.9) ;
+          }
+
+          .line::after,
+          .line2::after{
+            content:"";
+            position:absolute;
+            left:26px;
+            top:0;
+            width:100%;
+            height:50px;
+            box-sizing:border-box;
+            border-bottom:1px solid #000000;
+            transform-origin:bottom center;
+            transform:rotateZ(-45deg) scaleX(2.9) ;
+          }
+
+          .line2::after,
+          .line2::before{
+            top:-50px;
+          }
+          
+          .piece{
+              width: 400px;
+              height: 450px;
+              position: absolute;
+              /* background-color: aqua; */
+          }
+       
+          .p1::before,
+          .p1::after,
+          .p2::before,
+          .p2::after,
+          .p3::before,
+          .p3::after,
+          .p4::before,
+          .p4::after,
+          .p5::before,
+          .p5::after,
+          .p6::before,
+          .p6::after,
+          .p7::before,
+          .p7::after,
+          .p8::before,
+          .p8::after, 
+          .p1-r::before,
+          .p1-r::after,
+          .p2-r::before,
+          .p2-r::after,
+          .p3-r::before,
+          .p3-r::after,
+          .p4-r::before,
+          .p4-r::after,
+          .p5-r::before,
+          .p5-r::after,
+          .p6-r::before,
+          .p6-r::after,
+          .p7-r::before,
+          .p7-r::after,
+          .p8-r::before,
+          .p8-r::after{
+              content: "";
+              width: 40px;
+              height: 40px;
+              border: 1px solid #000000;
+              border-radius: 50%;
+              text-align: center;
+              line-height: 40px;
+              font-size: 25px;
+              background-color: #ffffff;
+              position: absolute;
+              z-index: 99;
+          }
+
+          .p1::before{
+            content: "車";
+              top: -20px;
+              left: -20px;
+          }
+
+          .p1::after{
+              content: "車";
+              top: -20px;
+              right: -20px;
+          }
+
+          .p2::before{
+              content: "馬";
+              top: -20px;
+              left: 30px;
+          }
+          .p2::after{
+              content: "馬";
+              top: -20px;
+              right: 30px;
+          }
+          .p3::before{
+              content: "象";
+              top: -20px;
+              left: 80px;
+          }
+          .p3::after{
+              content: "象";
+              top: -20px;
+              right: 80px;
+          }
+          .p4::before{
+              content: "士";
+              top: -20px;
+              left: 130px;
+          }
+          .p4::after{
+              content: "士";
+              top: -20px;
+              right: 130px;
+          }
+          .p5::before{
+              content: "包";
+              top: 80px;
+              left: 30px;
+          }
+          .p5::after{
+              content: "包";
+              top: 80px;
+              right: 30px;
+          }
+          .p6::before{
+              content: "卒";
+              top: 130px;
+              left: -20px;
+          }
+          .p6::after{
+              content: "卒";
+              top: 130px;
+              right: -20px;
+          }
+          .p7::before{
+              content: "卒";
+              top: 130px;
+              left: 80px;
+          }
+          .p7::after{
+              content: "卒";
+              top: 130px;
+              right: 80px;
+          }
+          .p8::before{
+              content: "將";
+              top: -20px;
+              left: 180px;
+          }
+          .p8::after{
+              content: "卒";
+              top: 130px;
+              right: 180px;
+          }
+
+          .p1-r::before{
+              content: "俥";
+              color:  red;
+              bottom: -20px;
+              left: -20px;
+          }
+
+          .p1-r::after{
+              content: "俥";
+              color:  red;
+              bottom: -20px;
+              right: -20px;
+          }
+          .p2-r::before{
+              content: "傌";
+              color:  red;
+              bottom: -20px;
+              left: 30px;
+          }
+
+          .p2-r::after{
+              content: "傌";
+              color:  red;
+              bottom: -20px;
+              right: 30px;
+          }
+          .p3-r::before{
+              content: "相";
+              color: red;
+              bottom: -20px;
+              left: 80px;
+          }
+          .p3-r::after{
+              content: "相";
+              color: red;
+              bottom: -20px;
+              right: 80px;
+          }
+          .p4-r::before{
+              content: "仕";
+              color: red;
+              bottom: -20px;
+              left: 130px;
+          }
+          .p4-r::after{
+              content: "仕";
+              color: red;
+              bottom: -20px;
+              right: 130px;
+          }
+          .p5-r::before{
+              content: "炮";
+              color: red;
+              bottom: 80px;
+              left: 30px;
+          }
+          .p5-r::after{
+              content: "炮";
+              color: red;
+              bottom: 80px;
+              right: 30px;
+          }
+          .p6-r::before{
+              content: "兵";
+              color: red;
+              bottom: 130px;
+              left: -20px;
+          }
+          .p6-r::after{
+              content: "兵";
+              color: red;
+              bottom: 130px;
+              right: -20px;
+          }
+          .p7-r::before{
+              content: "兵";
+              color: red;
+              bottom: 130px;
+              left: 80px;
+          }
+          .p7-r::after{
+              content: "兵";
+              color: red;
+              bottom: 130px;
+              right: 80px;
+          }
+          .p8-r::before{
+              content: "帥";
+              color: red;
+              bottom: -20px;
+              left: 180px;
+          }
+          .p8-r::after{
+              content: "兵";
+              color: red;
+              bottom: 130px;
+              right: 180px;
+          }
+    </style>
+</head>
+<body>
+   <div class="container">
+       <table>
+           <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td class="line"></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+           </tr>
+           <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr >
+            <td colspan="8" style="font-size: 30px;">楚河&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;漢界</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="line2"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <div class="piece">
+            <div class="p1"></div>
+            <div class="p2"></div>
+            <div class="p3"></div>
+            <div class="p4"></div>
+            <div class="p5"></div>
+            <div class="p6"></div>
+            <div class="p7"></div>
+            <div class="p8"></div>
+            <div class="p1-r"></div>
+            <div class="p2-r"></div>
+            <div class="p3-r"></div>
+            <div class="p4-r"></div>
+            <div class="p5-r"></div>
+            <div class="p6-r"></div>
+            <div class="p7-r"></div>
+            <div class="p8-r"></div>
+        </div>
+       </table>
+
+   </div>
+    
+</body>
+</html>
